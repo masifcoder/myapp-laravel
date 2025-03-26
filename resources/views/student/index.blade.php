@@ -39,28 +39,8 @@
 
 
       <div class="container">
-        <h1>{{ $message }}</h1>
-        <p>{{ $secondLine }}</p>
-        {{-- {!! $html !!} --}}
-
-        @if ($isLogin == true)
-          <h5>You are logged in</h5>
-        @else
-          <h5>You are NOT logged in</h5>
-        @endif  
-
-        {{-- @for ($i = 0; $i < 10; $i++)
-            The current value is {{ $i }} <br>
-        @endfor --}}
-
-        @foreach ($users as $user)
-          <h5>{{ $loop->iteration }}</h5>
-          
-          
-          {{ $user }} <br>
-
-        @endforeach
-
+            <h1>All Students</h1>
+            <a href="/students/create">Create Student</a>
       </div>
 
 

@@ -43,30 +43,54 @@
                         A good dashboard to display your statistics
                     </p>
                 </div>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <section class="section">
-                    <form method="POST" action="" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route("student.store") }}" enctype="multipart/form-data">
+                      @csrf
                         <!-- Name Field -->
                         <div class="mb-3">
                             <label for="name" class="form-label">Full Name</label>
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name" required>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name">
+                            
+                            @error('name')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+
                         </div>
             
                         <!-- file Field -->
                         <div class="mb-3">
                             <label for="image" class="form-label">Student Image</label>
-                            <input type="file" name="image" class="form-control" id="image" accept="image/*" required>
+                            <input type="file" name="image" class="form-control" id="image" accept="image/*">
+                           
                         </div>
             
                         <!-- Age Field -->
                         <div class="mb-3">
                             <label for="age" class="form-label">Age</label>
-                            <input type="number" name="age" class="form-control" id="age" placeholder="Enter your age" required>
+                            <input type="number" name="age" class="form-control" id="age" placeholder="Enter your age">
+                            @error('age')
+                            <div class="alert alert-danger">
+                              {{ $message }}
+                          </div>
+                            @enderror
                         </div>
             
                         <!-- City Field (Dropdown) -->
                         <div class="mb-3">
                             <label for="city" class="form-label">City</label>
-                            <select class="form-select" id="city" name="city" required>
+                            <select class="form-select" id="city" name="city">
                                 <option value="" selected disabled>Select your city</option>
                                 <option value="Lodhran">Lodhran</option>
                                 <option value="Multan">Multan</option>

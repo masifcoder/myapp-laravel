@@ -10,6 +10,7 @@ Route::get("/services", [HomeController::class, "ServicesPage"]);
 Route::get("/students", [StudentController::class, "index"])->name("student.index");
 Route::get("/students/create", [StudentController::class, "createForm"])->name("student.createForm");
 Route::post("/students/store", [StudentController::class, "storeStudent"])->name("student.store");
+Route::get("/students/delete/{id}", [StudentController::class, "delete"])->name("student.delete");
 
 // Route::get('/', function () {
 //     return view('welcome');

@@ -7,21 +7,29 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    
 
-    public function index() {
 
-        return view("student.index");
+    public function index()
+    {
+
+
+        $students = Student::all();
+
+        // dd($students);
+
+        return view("student.index", ["students" => $students]);
     }
 
-    public function createForm() {
+    public function createForm()
+    {
         return view("student.createForm");
     }
 
-    public function storeStudent(Request $request) {
+    public function storeStudent(Request $request)
+    {
 
         // validate data
-        
+
         $request->validate([
             'name' => "required|max:60",
             'age' => 'required'
@@ -32,10 +40,24 @@ class StudentController extends Controller
 
 
         // store data into db
-         Student::create($request->all());
+        Student::create($request->all());
 
         return redirect()->route("student.index");
         // dd($request->input('name'));
         // dd($request->age);
+    }
+
+    public function delete($id)
+    {
+
+
+        $student =  Student::find($id);
+
+        if ($student != null) {
+            $student->delete();
+            return redirect()->route("student.index")->with("success", "Successfully deleted");
+        }
+
+        return redirect()->route("student.index")->with("error", "Record not found");
     }
 }

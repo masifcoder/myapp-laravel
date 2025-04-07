@@ -40,7 +40,49 @@
 
       <div class="container">
             <h1>All Students</h1>
-            <a href="/students/create">Create Student</a>
+            <a class="btn btn-warning btn-sm" href="/students/create">Create Student</a>
+
+            @if(session('success'))
+              <div class="alert alert-success">
+                {{ session('success') }}
+             </div>
+            @endif
+
+            @if(session('error'))
+            <div class="alert alert-danger">
+              {{ session('error') }}
+           </div>
+          @endif
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Photo</th>
+                  <th scope="col">Age</th>
+                  <th>City</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                  @foreach ($students as $student)
+                  <tr>
+                    <th scope="row">{{ $student->id}}</th>
+                    <td> {{ $student->name }}</td>
+                    <td>{{ $student->image }}</td>
+                    <td>{{ $student->age }}</td>
+                    <td>{{ $student->city }}</td>
+                    <td>
+                      <a href='./forms/updateForm.php?id={$row['id']}' class='btn btn-sm btn-warning me-2'>Edit</a>
+                      {{-- <a href='./actions/delete_action.php?id={$row['id']}' class='btn btn-sm btn-danger'>Delete</a> --}}
+                      <a href={{ route("student.delete", $student->id) }} class='btn btn-sm btn-danger'>Delete</a>
+                  </td>
+                  </tr>
+                  @endforeach
+              </tbody>
+            </table>
+
       </div>
 
 

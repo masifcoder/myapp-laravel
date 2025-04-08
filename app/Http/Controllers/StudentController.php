@@ -32,15 +32,27 @@ class StudentController extends Controller
 
         $request->validate([
             'name' => "required|max:60",
-            'age' => 'required'
+            'age' => 'required',
+            'image' => 'required|mimes:jpg,jpeg,png|max:2048'
+
         ], [
             'name.required' => "Name field is required, please fill it.",
             "name.max" => "Name is too large"
         ]);
 
 
+        // upload image
+        $path = $request->file('image')->store("uploads", "public");
+        
+// dd($path);
+
         // store data into db
-        Student::create($request->all());
+        Student::create([
+            'name' => $request->input('name'),
+            'age' => $request->input('age'),
+            'city' => $request->input('city'),
+            'image' => $path
+        ]);
 
         return redirect()->route("student.index");
         // dd($request->input('name'));

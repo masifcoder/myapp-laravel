@@ -70,7 +70,7 @@
                   <tr>
                     <th scope="row">{{ $student->id}}</th>
                     <td> {{ $student->name }}</td>
-                    <td>{{ $student->image }}</td>
+                    <td><img src="{{ asset('storage/' . $student->image) }}" width="40px"></td>
                     <td>{{ $student->age }}</td>
                     <td>{{ $student->city }}</td>
                     <td>

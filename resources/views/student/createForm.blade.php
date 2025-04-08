@@ -59,7 +59,7 @@
                         <!-- Name Field -->
                         <div class="mb-3">
                             <label for="name" class="form-label">Full Name</label>
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name">
+                            <input type="text" value="{{ old('name') }}" name="name" class="form-control" id="name" placeholder="Enter your name">
                             
                             @error('name')
                             <div class="alert alert-danger">
@@ -79,7 +79,7 @@
                         <!-- Age Field -->
                         <div class="mb-3">
                             <label for="age" class="form-label">Age</label>
-                            <input type="number" name="age" class="form-control" id="age" placeholder="Enter your age">
+                            <input type="number" value="{{ old('age') }}"  name="age" class="form-control" id="age" placeholder="Enter your age">
                             @error('age')
                             <div class="alert alert-danger">
                               {{ $message }}

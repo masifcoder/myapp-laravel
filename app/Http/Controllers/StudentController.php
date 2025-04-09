@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -43,8 +44,8 @@ class StudentController extends Controller
 
         // upload image
         $path = $request->file('image')->store("uploads", "public");
-        
-// dd($path);
+
+        // dd($path);
 
         // store data into db
         Student::create([
@@ -63,13 +64,14 @@ class StudentController extends Controller
     {
 
 
-        $student =  Student::find($id);
+        $student =  Student::findOrFail($id);
 
-        if ($student != null) {
-            $student->delete();
-            return redirect()->route("student.index")->with("success", "Successfully deleted");
-        }
+        // delete image
+        if($student->image && Storage::disk('public')->exists($student->image)) {
+            Storage::disk('public')->delete($student->image);
+        } 
 
-        return redirect()->route("student.index")->with("error", "Record not found");
+        $student->delete();
+        return redirect()->route("student.index")->with("success", "Successfully deleted");
     }
 }

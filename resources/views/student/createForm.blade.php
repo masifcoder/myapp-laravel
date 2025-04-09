@@ -92,10 +92,10 @@
                             <label for="city" class="form-label">City</label>
                             <select class="form-select" id="city" name="city">
                                 <option value="" selected disabled>Select your city</option>
-                                <option value="Lodhran">Lodhran</option>
-                                <option value="Multan">Multan</option>
-                                <option value="Karachi">Karachi</option>
-                                <option value="Bahawalpur">Bahawalpur</option>
+                                <option value="Lodhran" @selected(old('city') == 'Lodhran') >Lodhran</option>
+                                <option value="Multan" @selected(old('city') == 'Multan')>Multan</option>
+                                <option value="Karachi" @selected(old('city') == 'Karachi')>Karachi</option>
+                                <option value="Bahawalpur" @selected(old('city') == 'Bahawalpur')>Bahawalpur</option>
                             </select>
                         </div>
             

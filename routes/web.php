@@ -12,6 +12,9 @@ Route::get("/students/create", [StudentController::class, "createForm"])->name("
 Route::post("/students/store", [StudentController::class, "storeStudent"])->name("student.store");
 Route::get("/students/delete/{id}", [StudentController::class, "delete"])->name("student.delete");
 
+Route::get("/students/edit/{id}", [StudentController::class, "editForm"])->name("student.editForm");
+Route::post("/students/update/{id}", [StudentController::class, "update"])->name("student.update");
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });

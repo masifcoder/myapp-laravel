@@ -74,7 +74,7 @@
                     <td>{{ $student->age }}</td>
                     <td>{{ $student->city }}</td>
                     <td>
-                      <a href='./forms/updateForm.php?id={$row['id']}' class='btn btn-sm btn-warning me-2'>Edit</a>
+                      <a href={{ route("student.editForm", $student->id) }} class='btn btn-sm btn-warning me-2'>Edit</a>
                       {{-- <a href='./actions/delete_action.php?id={$row['id']}' class='btn btn-sm btn-danger'>Delete</a> --}}
                       <a href={{ route("student.delete", $student->id) }} class='btn btn-sm btn-danger'>Delete</a>
                   </td>
